@@ -10,7 +10,7 @@ def main():
     # 1. 参数解析
     parser = argparse.ArgumentParser(description='肝癌生存预测消融实验')
     parser.add_argument('--train_data_root', default='./data/train', help='训练集数据根目录')
-    parser.add_argument('--test_data_root', default='./data/test', help='测试集数据根目录')
+    # parser.add_argument('--test_data_root', default='./data/test', help='测试集数据根目录')
     parser.add_argument('--clinical_file', default='clinical_info.xlsx', help='临床数据文件名')
     parser.add_argument('--batch_size', type=int, default=16, help='批大小')
     # 添加MRI序列相关参数
@@ -23,8 +23,7 @@ def main():
 
     # 2. 运行消融实验
     final_results,_ = run_ablation(
-        train_data_root=args.train_data_root,
-        test_data_root=args.test_data_root,
+        data_root=args.train_data_root,
         clinical_file=args.clinical_file,
         mri_sequences=args.mri_sequences,
         num_slices=args.num_slices,
