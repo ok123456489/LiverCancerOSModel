@@ -5,7 +5,7 @@ import numpy as np
 from torch.optim.lr_scheduler import ReduceLROnPlateau, LambdaLR
 from torch.utils.data import DataLoader
 
-from model1 import SurvivalModel
+from model import SurvivalModel
 from utils.matrics import Evaluate
 
 
@@ -21,10 +21,11 @@ class SurvivalTrainer:
             shuffle=True)
         self.optimizer = torch.optim.AdamW(
             self.model.parameters(),
-            lr=config['lr']
+            lr=config['lr'],
+            weight_decay=1e-4
         )
         self.config = config
-        self.scheduler = LambdaLR(self.optimizer, lr_lambda=lambda epoch: max(0.95 ** epoch, 1e-5 / config['lr']))
+        self.scheduler = LambdaLR(self.optimizer, lr_lambda=lambda epoch: max(0.95 ** epoch, 5e-6 / config['lr']))
         # 确保输出目录存在
         self.output_dir = config.get('output_dir', './output')
         os.makedirs(self.output_dir, exist_ok=True)
