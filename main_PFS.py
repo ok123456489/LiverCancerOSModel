@@ -11,7 +11,7 @@ def main():
     parser = argparse.ArgumentParser(description='肝癌生存预测消融实验')
     parser.add_argument('--train_data_root', default='./data/train', help='训练集数据根目录')
     # parser.add_argument('--test_data_root', default='./data/test', help='测试集数据根目录')
-    parser.add_argument('--clinical_file', default='clinical_info.xlsx', help='临床数据文件名')
+    parser.add_argument('--clinical_file', default='clinical_info_pfs.xlsx', help='临床数据文件名')
     parser.add_argument('--batch_size', type=int, default=16, help='批大小')
     # 添加MRI序列相关参数
     parser.add_argument('--mri_sequences', nargs='+', default=['AP', 'VP', 'DP', 'T2'], help='使用的MRI序列列表')
